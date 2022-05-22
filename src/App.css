@@ -19,13 +19,13 @@
   margin: 20px 0 0;
 } */
 
-.game-container {
+/* .game-container {
   padding: 20px 30px;
   position: relative;
   margin: auto;
   height: 350px;
   width: 450px;
-}
+} */
 
 /* .stickman-container {
   fill: transparent;
@@ -33,7 +33,7 @@
   stroke-width: 4px;
   stroke-linecap: round;
 } */
-
+/* 
 .figure-part {
   display: none;
 }
@@ -127,4 +127,4 @@
 
 .notification-container.show {
   transform: translateY(-50px);
-} 
+}  */

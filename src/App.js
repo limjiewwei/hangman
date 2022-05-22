@@ -6,22 +6,18 @@ import "./App.css";
 import Swal from "sweetalert2";
 import "animate.css";
 
-const categories = ["programming", "animal"];
-let chosenCategory = categories[Math.floor(Math.random() * categories.length)];
-let chosenWord;
-if (chosenCategory === "programming") {
-	let words = ["ruby", "python", "javascript", "java", "kotlin", "php"];
-	chosenWord = words[Math.floor(Math.random() * words.length)];
-} else {
-	let words = ["cat", "dog", "rhinoceros", "panda", "tiger", "lion"];
-	chosenWord = words[Math.floor(Math.random() * words.length)];
-}
-console.log(chosenWord);
-
 function App() {
+	const [chosenCategory, setChosenCategory] = useState("");
+	const [chosenWord, setChosenWord] = useState("");
 	const [correctChar, setCorrectChar] = useState([]);
 	const [wrongChar, setWrongChar] = useState([]);
 	const [livesLeft, setLivesLeft] = useState(6);
+
+	useEffect(() => {
+		const [generatedWord, generatedCategory] = generateWord();
+		setChosenWord(generatedWord);
+		setChosenCategory(generatedCategory);
+	}, []);
 
 	useEffect(() => {
 		if (livesLeft === 0) {
@@ -35,9 +31,35 @@ function App() {
 				hideClass: {
 					popup: "animate__animated animate__fadeOutUp",
 				},
+			}).then(() => {
+				restartGame();
 			});
 		}
 	}, [livesLeft]);
+
+	function generateWord() {
+		const categories = ["programming", "animal"];
+		let chosenCategory = categories[Math.floor(Math.random() * categories.length)];
+		let chosenWord;
+		if (chosenCategory === "programming") {
+			let words = ["ruby", "python", "javascript", "java", "kotlin", "php"];
+			chosenWord = words[Math.floor(Math.random() * words.length)];
+		} else {
+			let words = ["cat", "dog", "rhinoceros", "panda", "tiger", "lion"];
+			chosenWord = words[Math.floor(Math.random() * words.length)];
+		}
+		console.log(chosenWord);
+		return [chosenWord, chosenCategory];
+	}
+
+	function restartGame() {
+		setCorrectChar([]);
+		setWrongChar([]);
+		setLivesLeft(6);
+		const [generatedWord, generatedCategory] = generateWord();
+		setChosenWord(generatedWord);
+		setChosenCategory(generatedCategory);
+	}
 
 	function submitChar(char) {
 		if (chosenWord.includes(char)) {
