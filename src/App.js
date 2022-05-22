@@ -20,6 +20,28 @@ function App() {
 	}, []);
 
 	useEffect(() => {
+		let status = "win";
+		chosenWord.split("").forEach((char) => {
+			if (!correctChar.includes(char)) status = "";
+		});
+		if (status === "win" && chosenWord.length > 0) {
+			Swal.fire({
+				title: "You won the game!",
+				text: "Play again?",
+				confirmButtonText: "Play again",
+				showClass: {
+					popup: "animate__animated animate__fadeInDown",
+				},
+				hideClass: {
+					popup: "animate__animated animate__fadeOutUp",
+				},
+			}).then(() => {
+				restartGame();
+			});
+		}
+	}, [correctChar]);
+
+	useEffect(() => {
 		if (livesLeft === 0) {
 			Swal.fire({
 				title: "You lost the game!",
