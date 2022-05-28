@@ -26,7 +26,7 @@ function App() {
 		if (status === "win" && chosenWord.length > 0) {
 			Swal.fire({
 				title: "You won the game!",
-				text: `You guessed the word ${generateWord}`,
+				text: `You guessed the word ${chosenWord}`,
 				confirmButtonText: "Play again",
 				showClass: {
 					popup: "animate__animated animate__fadeInDown",
@@ -44,7 +44,7 @@ function App() {
 		if (livesLeft === 0) {
 			Swal.fire({
 				title: "You lost the game!",
-				text: `The word was: ${generateWord}`,
+				text: `The word was: ${chosenWord}`,
 				confirmButtonText: "Play again",
 				showClass: {
 					popup: "animate__animated animate__fadeInDown",
