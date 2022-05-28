@@ -26,7 +26,7 @@ function App() {
 		if (status === "win" && chosenWord.length > 0) {
 			Swal.fire({
 				title: "You won the game!",
-				text: "Play again?",
+				text: `You guessed the word ${generateWord}`,
 				confirmButtonText: "Play again",
 				showClass: {
 					popup: "animate__animated animate__fadeInDown",
@@ -44,7 +44,7 @@ function App() {
 		if (livesLeft === 0) {
 			Swal.fire({
 				title: "You lost the game!",
-				text: "Play again?",
+				text: `The word was: ${chosenWord}`,
 				confirmButtonText: "Play again",
 				showClass: {
 					popup: "animate__animated animate__fadeInDown",
@@ -105,7 +105,7 @@ function App() {
 				{"abcdefghijklmnopqrstuvwxyz".split("").map((char, index) => {
 					return (
 						<button
-							className="bg-blue-300 mx-4 p-4 mb-4 text-black font-semibold disabled:opacity-20"
+							className="bg-blue-300 mx-2 md:mx-4 p-2 md:p-4 mb-2 md:mb-4 text-[14px] md:text-[16px] text-black font-semibold disabled:opacity-20"
 							value={char}
 							key={index}
 							disabled={charClicked(char)}
