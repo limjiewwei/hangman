@@ -44,7 +44,7 @@ function App() {
 		if (livesLeft === 0) {
 			Swal.fire({
 				title: "You lost the game!",
-				text: `The word was: ${chosenWord}`,
+				text: `The word was: ${generateWord}`,
 				confirmButtonText: "Play again",
 				showClass: {
 					popup: "animate__animated animate__fadeInDown",
