@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Stickman from "./components/Stickman";
 import Word from "./components/Word";
-import "./App.css";
 import Swal from "sweetalert2";
 import "animate.css";
 
@@ -91,6 +90,11 @@ function App() {
 		}
 	}
 
+	function charClicked(char) {
+		if (correctChar.includes(char) || wrongChar.includes(char)) return true;
+		return false;
+	}
+
 	return (
 		<div className="App">
 			<Header livesLeft={livesLeft} />
@@ -98,9 +102,14 @@ function App() {
 			<p className="text-center">Guess the hidden word related to {chosenCategory}</p>
 			<Word chosenWord={chosenWord} correctChar={correctChar} />
 			<div className="text-center">
-				{"abcdefghijklmnopqrustuvwxyz".split("").map((char, index) => {
+				{"abcdefghijklmnopqrstuvwxyz".split("").map((char, index) => {
 					return (
-						<button className="bg-blue-300 mx-4 p-4 mb-4 text-black font-semibold" value={char} key={index} onClick={(e) => submitChar(e.target.value)}>
+						<button
+							className="bg-blue-300 mx-4 p-4 mb-4 text-black font-semibold disabled:opacity-20"
+							value={char}
+							key={index}
+							disabled={charClicked(char)}
+							onClick={(e) => submitChar(e.target.value)}>
 							{char}
 						</button>
 					);
