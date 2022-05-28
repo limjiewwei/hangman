@@ -70,7 +70,6 @@ function App() {
 			let words = ["cat", "dog", "rhinoceros", "panda", "tiger", "lion"];
 			chosenWord = words[Math.floor(Math.random() * words.length)];
 		}
-		console.log(chosenWord);
 		return [chosenWord, chosenCategory];
 	}
 
